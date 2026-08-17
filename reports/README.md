@@ -1,7 +1,7 @@
 # EDA Reports
 
 <p align="left">
-  <img src="../docs/reports.drawio.png" alt="Home Credit EDA Reports" width="55%">
+  <img src="reports.drawio.png" alt="Home Credit EDA Reports" width="55%">
 </p>
 
 The `reports/` directory contains the **HTML reports exported directly from Databricks notebooks** after completing the exploratory data analysis of the Home Credit dataset.
