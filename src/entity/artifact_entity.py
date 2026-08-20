@@ -4,8 +4,8 @@ from pathlib import Path
 
 @dataclass(frozen=True)
 class DataIngestionArtifact:
-    train_data_path: Path
-    test_data_path: Path
+    train_file_path: Path
+    test_file_path: Path
 
 
 @dataclass(frozen=True)
@@ -14,5 +14,35 @@ class DataValidationArtifact:
     status_file_path: Path
     report_file_path: Path
     drift_file_path: Path
-    train_data_path: Path
-    test_data_path: Path
+    train_file_path: Path
+    test_file_path: Path
+
+
+@dataclass(frozen=True)
+class DataTransformationArtifact:
+    processed_train_path: Path
+    processed_test_path: Path
+
+
+@dataclass(frozen=True)
+class ModelTrainerArtifact:
+    trained_model_path: Path
+    metrics_file_path: Path
+    metric_value: str
+
+
+@dataclass(frozen=True)
+class ModelEvaluationArtifact:
+    is_model_accepted: bool
+    evaluated_model_uri: str
+    metric_report_path: Path
+    improvement_delta: float
+
+
+@dataclass(frozen=True)
+class ModelCalibrationArtifact:
+    is_model_calibrated: bool
+    calibrated_model_path: Path
+    original_log_loss: float
+    calibrated_log_loss: float
+    metric_report_path: Path

@@ -1,36 +1,59 @@
 from dataclasses import dataclass
 from pathlib import Path
+
 from src.constants import (
-    APPLICATION_TEST_SOURCE,
-    APPLICATION_TRAIN_SOURCE,
-    PREPROCESSOR_OBJECT_FILE_PATH,
-    PROCESSED_DATA_PATH,
-    RAW_DATA_PATH,
-    TRANSFORMATION_ARTIFACTS_DIR,
-    VALIDATION_REPORT_DIR,
+    RAW_DATA_DIR,
+    DATABRICKS_TRAIN_SOURCE_PATH,
+    DATABRICKS_TEST_SOURCE_PATH,
+    DATA_VALIDATION_DIR,
+    DATA_TRANSFORMATION_DIR,
+    MODEL_EVALUATION_DIR,
+    MODEL_TRAINER_DIR,
+    MODEL_CALIBRATION_DIR,
 )
 
 
 @dataclass(frozen=True)
 class DataIngestionConfig:
-    train_source_path: str = APPLICATION_TRAIN_SOURCE
-    test_source_path: str = APPLICATION_TEST_SOURCE
-    train_raw_path: Path = RAW_DATA_PATH / "applications_train.csv"
-    test_raw_path: Path = RAW_DATA_PATH / "applications_test.csv"
+    train_source_path: str = DATABRICKS_TRAIN_SOURCE_PATH
+    test_source_path: str = DATABRICKS_TEST_SOURCE_PATH
+    train_file_path: Path = RAW_DATA_DIR / "train.csv"
+    test_file_path: Path = RAW_DATA_DIR / "test.csv"
 
 
 @dataclass(frozen=True)
 class DataValidationConfig:
-    report_dir: Path = VALIDATION_REPORT_DIR
-    status_file_path: Path = VALIDATION_REPORT_DIR / "status.txt"
-    report_file_path: Path = VALIDATION_REPORT_DIR / "validation_report.json"
-    drift_file_path: Path = VALIDATION_REPORT_DIR / "data_drift_report.json"
+    report_dir: Path = DATA_VALIDATION_DIR
+    status_file_path: Path = DATA_VALIDATION_DIR / "status.txt"
+    report_file_path: Path = DATA_VALIDATION_DIR / "validation_report.json"
+    drift_file_path: Path = DATA_VALIDATION_DIR / "drift_report.json"
 
 
 @dataclass(frozen=True)
 class DataTransformationConfig:
-    processed_data_path: Path = PROCESSED_DATA_PATH
-    processed_train_path: Path = PROCESSED_DATA_PATH / "processed_train.parquet"
-    processed_test_path: Path = PROCESSED_DATA_PATH / "processed_test.parquet"
-    transformation_artifacts_dir: Path = TRANSFORMATION_ARTIFACTS_DIR
-    preprocessor_object_file_path: Path = PREPROCESSOR_OBJECT_FILE_PATH
+    transformation_artifacts_dir: Path = DATA_TRANSFORMATION_DIR
+    processed_train_path: Path = DATA_TRANSFORMATION_DIR / "train_processed.parquet"
+    processed_test_path: Path = DATA_TRANSFORMATION_DIR / "test_processed.parquet"
+
+
+@dataclass(frozen=True)
+class ModelTrainerConfig:
+    model_trainer_dir: Path = MODEL_TRAINER_DIR
+    target_column: str = "target"
+    model_type: str = "histgbm"
+
+
+@dataclass(frozen=True)
+class ModelEvaluationConfig:
+    model_evaluation_dir: Path = MODEL_EVALUATION_DIR
+    metric_report_path: Path = MODEL_EVALUATION_DIR / "evaluation_report.json"
+    threshold: float = 0.75
+    improvement_delta: float = 0.0
+
+
+@dataclass(frozen=True)
+class ModelCalibrationConfig:
+    calibration_dir: Path = MODEL_CALIBRATION_DIR
+    calibrated_model_path: Path = MODEL_CALIBRATION_DIR / "model.joblib"
+    metric_report_path: Path = MODEL_CALIBRATION_DIR / "calibration_report.json"
+    calibration_method: str = "sigmoid"
