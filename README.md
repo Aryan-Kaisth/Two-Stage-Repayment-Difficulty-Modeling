@@ -1,5 +1,5 @@
 <p align="left">
-  <img src="docs/thumbnail.png" alt="Home Credit Logo" width="60%">
+  <img src="docs/thumbnail.png" alt="Home Credit Logo" width="70%">
 </p>
 
 An Explainable two-stage machine learning system with post-hoc probability calibration for Home Credit repayment difficulty prediction.

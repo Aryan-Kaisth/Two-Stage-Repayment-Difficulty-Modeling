@@ -8,3 +8,10 @@ wheels/
 
 # Virtual environments
 .venv
+
+# datasets
+*.csv
+mlruns
+
+# catboost
+catboost_info
