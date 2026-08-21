@@ -34,13 +34,14 @@ class DataTransformationConfig:
     transformation_artifacts_dir: Path = DATA_TRANSFORMATION_DIR
     processed_train_path: Path = DATA_TRANSFORMATION_DIR / "train_processed.parquet"
     processed_test_path: Path = DATA_TRANSFORMATION_DIR / "test_processed.parquet"
+    preprocessor_path: Path = DATA_TRANSFORMATION_DIR / "preprocessor.joblib"
 
 
 @dataclass(frozen=True)
 class ModelTrainerConfig:
     model_trainer_dir: Path = MODEL_TRAINER_DIR
     target_column: str = "target"
-    model_type: str = "histgbm"
+    model_type: str = "lightgbm"
 
 
 @dataclass(frozen=True)

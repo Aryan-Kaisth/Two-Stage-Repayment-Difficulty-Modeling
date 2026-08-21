@@ -22,13 +22,15 @@ class DataValidationArtifact:
 class DataTransformationArtifact:
     processed_train_path: Path
     processed_test_path: Path
+    preprocessor_path: Path
 
 
 @dataclass(frozen=True)
 class ModelTrainerArtifact:
-    trained_model_path: Path
+    trained_model_path: str
     metrics_file_path: Path
-    metric_value: str
+    metric_value: float
+    oof_predictions_path: Path
 
 
 @dataclass(frozen=True)
