@@ -1,10 +1,10 @@
 from datetime import datetime
 import json
-from typing import Any, Dict, Tuple
+from typing import Any, Dict, Optional, Tuple
 
 from evidently import Report
-from evidently.presets import DataDriftPreset
 from evidently.metrics import ValueDrift
+from evidently.presets import DataDriftPreset
 from loguru import logger
 import pandas as pd
 import pandera.pandas as pa
@@ -23,15 +23,20 @@ from src.entity.config_entity import DataValidationConfig
 class DataValidation:
     def __init__(
         self,
-        data_ingestion_artifact: DataIngestionArtifact,
-        config: DataValidationConfig = DataValidationConfig(),
+        data_ingestion_artifact: Optional[DataIngestionArtifact] = None,
+        config: Optional[DataValidationConfig] = None,
     ) -> None:
-        self.config = config
+        self.config = config if config is not None else DataValidationConfig()
         self.data_ingestion_artifact = data_ingestion_artifact
 
     def _load_and_preprocess_data(self) -> Tuple[pd.DataFrame, pd.DataFrame]:
-        train_path = self.data_ingestion_artifact.train_data_path
-        test_path = self.data_ingestion_artifact.test_data_path
+        if self.data_ingestion_artifact is None:
+            raise ValueError(
+                "DataIngestionArtifact must be provided to load and preprocess training/testing data."
+            )
+
+        train_path = self.data_ingestion_artifact.train_file_path
+        test_path = self.data_ingestion_artifact.test_file_path
 
         logger.debug("Loading train data from {}", train_path)
         train_df = pd.read_csv(train_path)
@@ -46,44 +51,41 @@ class DataValidation:
         return train_df, test_df
 
     def _validate_schema(
-        self, train_df: pd.DataFrame, test_df: pd.DataFrame
+        self,
+        train_df: Optional[pd.DataFrame] = None,
+        test_df: Optional[pd.DataFrame] = None,
     ) -> Tuple[bool, Dict[str, Any]]:
+        if train_df is None and test_df is None:
+            raise ValueError("At least one DataFrame (train_df or test_df) must be provided for schema validation.")
+
         validation_status = True
-        report = {
+        report: Dict[str, Any] = {
             "timestamp": datetime.utcnow().isoformat(),
-            "train_validation": {"status": True, "errors": []},
-            "test_validation": {"status": True, "errors": []},
         }
 
-        # Validate Train Split
-        try:
-            ApplicationTrainSchema.validate(train_df, lazy=True)
-            logger.info("Train dataset passed schema validation")
-        except pa.errors.SchemaErrors as err:
-            validation_status = False
-            report["train_validation"]["status"] = False
-            report["train_validation"]["errors"] = err.failure_cases.to_dict(
-                orient="records"
-            )
-            logger.error(
-                "Train dataset failed schema validation with {} issues",
-                len(err.failure_cases),
-            )
+        # 1. Validate Train Split (if provided)
+        if train_df is not None:
+            report["train_validation"] = {"status": True, "errors": []}
+            try:
+                ApplicationTrainSchema.validate(train_df, lazy=True)
+                logger.info("Train dataset passed schema validation.")
+            except pa.errors.SchemaErrors as err:
+                validation_status = False
+                report["train_validation"]["status"] = False
+                report["train_validation"]["errors"] = err.failure_cases.to_dict(orient="records")
+                logger.error("Train dataset failed schema validation with {} issues", len(err.failure_cases))
 
-        # Validate Test Split
-        try:
-            ApplicationTestSchema.validate(test_df, lazy=True)
-            logger.info("Test dataset passed schema validation")
-        except pa.errors.SchemaErrors as err:
-            validation_status = False
-            report["test_validation"]["status"] = False
-            report["test_validation"]["errors"] = err.failure_cases.to_dict(
-                orient="records"
-            )
-            logger.error(
-                "Test dataset failed schema validation with {} issues",
-                len(err.failure_cases),
-            )
+        # 2. Validate Test / Inference Split (if provided)
+        if test_df is not None:
+            report["test_validation"] = {"status": True, "errors": []}
+            try:
+                ApplicationTestSchema.validate(test_df, lazy=True)
+                logger.info("Test/Inference dataset passed schema validation.")
+            except pa.errors.SchemaErrors as err:
+                validation_status = False
+                report["test_validation"]["status"] = False
+                report["test_validation"]["errors"] = err.failure_cases.to_dict(orient="records")
+                logger.error("Test/Inference dataset failed schema validation with {} issues", len(err.failure_cases))
 
         return validation_status, report
 
@@ -93,7 +95,7 @@ class DataValidation:
         logger.info("Running Evidently data & target drift analysis")
 
         # Base metrics: Dataset-level feature drift
-        metrics_list = [DataDriftPreset(include_tests=True)] # included tests
+        metrics_list = [DataDriftPreset(include_tests=True)]
 
         # If target exists in both, add ValueDrift for the target
         if "target" in train_df.columns and "target" in test_df.columns:
@@ -143,6 +145,11 @@ class DataValidation:
         )
 
     def initiate_data_validation(self) -> DataValidationArtifact:
+        if self.data_ingestion_artifact is None:
+            raise ValueError(
+                "DataIngestionArtifact is required to execute initiate_data_validation()."
+            )
+
         logger.info("Starting data validation pipeline")
 
         self.config.report_dir.mkdir(parents=True, exist_ok=True)
@@ -159,15 +166,13 @@ class DataValidation:
         # Save validation files
         self._save_validation_artifacts(validation_status, report)
 
-        logger.info(
-            "Validation pipeline finished with status: {}", validation_status
-        )
+        logger.info("Validation pipeline finished with status: {}", validation_status)
 
         return DataValidationArtifact(
             validation_status=validation_status,
             status_file_path=self.config.status_file_path,
             report_file_path=self.config.report_file_path,
             drift_file_path=self.config.drift_file_path,
-            train_data_path=self.data_ingestion_artifact.train_data_path,
-            test_data_path=self.data_ingestion_artifact.test_data_path,
+            train_file_path=self.data_ingestion_artifact.train_file_path,
+            test_file_path=self.data_ingestion_artifact.test_file_path,
         )

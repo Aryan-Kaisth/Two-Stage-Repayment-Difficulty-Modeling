@@ -13,12 +13,18 @@ class DataIngestion:
         config: DataIngestionConfig = DataIngestionConfig(),
     ) -> None:
         self.config = config
-        self.client = WorkspaceClient()
 
-    def _read_volume_csv(self, source_path: str) -> pd.DataFrame:
-        logger.debug("Reading CSV from Databricks Volume: {}", source_path,)
+    def _get_client(self) -> WorkspaceClient:
+        """Lazily initializes the Databricks client only when required."""
+        logger.debug("Initializing Databricks WorkspaceClient...")
+        return WorkspaceClient()
 
-        response = self.client.files.download(source_path)
+    def _read_volume_csv(
+        self, client: WorkspaceClient, source_path: str
+    ) -> pd.DataFrame:
+        logger.info(f"Extracting dataset from Databricks Volume: {source_path}")
+
+        response = client.files.download(source_path)
 
         with response.contents as file:
             content = file.read()
@@ -26,41 +32,55 @@ class DataIngestion:
         data = pd.read_csv(io.BytesIO(content))
 
         logger.debug(
-            "Successfully read {} rows and {} columns",
-            data.shape[0],
-            data.shape[1],
+            f"Successfully parsed DataFrame from Databricks | "
+            f"Shape: {data.shape[0]:,} rows, {data.shape[1]} columns"
         )
 
         return data
 
     def initiate_data_ingestion(self) -> DataIngestionArtifact:
-        train_raw_path = self.config.train_raw_path
-        test_raw_path = self.config.test_raw_path
+        logger.info("Starting Data Ingestion Component")
 
-        if train_raw_path.exists() and test_raw_path.exists():
+        # Notice we updated the names here to match our new Config schema
+        train_file_path = self.config.train_file_path
+        test_file_path = self.config.test_file_path
+
+        # Idempotency Check (Cache validation)
+        if train_file_path.exists() and test_file_path.exists():
             logger.info(
-                "Raw data already exists. Skipping ingestion."
+                "Cached datasets detected locally. "
+                "Skipping Databricks extraction to save network bandwidth and compute."
             )
-
             return DataIngestionArtifact(
-                train_data_path=train_raw_path,
-                test_data_path=test_raw_path,
+                train_file_path=train_file_path,
+                test_file_path=test_file_path,
             )
 
-        logger.info("Starting data ingestion")
+        # Ensure local directories exist before saving
+        logger.debug(
+            f"Ensuring local directory structure exists at: {train_file_path.parent}"
+        )
+        train_file_path.parent.mkdir(parents=True, exist_ok=True)
+        test_file_path.parent.mkdir(parents=True, exist_ok=True)
 
-        train_data = self._read_volume_csv(self.config.train_source_path)
+        # Extract data from source
+        client = self._get_client()
 
-        test_data = self._read_volume_csv(self.config.test_source_path)
+        train_data = self._read_volume_csv(client, self.config.train_source_path)
+        test_data = self._read_volume_csv(client, self.config.test_source_path)
 
-        train_data.to_csv(train_raw_path, index=False)
-        test_data.to_csv(test_raw_path, index=False)
+        # Load/Save to local disk
+        logger.info("Persisting datasets to local storage...")
+        train_data.to_csv(train_file_path, index=False)
+        logger.success(f"Train dataset serialized and saved to: {train_file_path}")
 
-        logger.info("Train data saved to {}", train_raw_path,)
-        logger.info("Test data saved to {}", test_raw_path,)
-        logger.info("Data ingestion completed successfully")
+        test_data.to_csv(test_file_path, index=False)
+        logger.success(f"Test dataset serialized and saved to: {test_file_path}")
 
+        logger.info("Data Ingestion Component completed successfully.")
+
+        # Return the properly named Artifact
         return DataIngestionArtifact(
-            train_data_path=train_raw_path,
-            test_data_path=test_raw_path,
+            train_file_path=train_file_path,
+            test_file_path=test_file_path,
         )
