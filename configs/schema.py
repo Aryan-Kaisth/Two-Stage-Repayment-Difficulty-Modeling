@@ -161,9 +161,15 @@ class BaseApplicationSchema(pa.DataFrameModel):
 
 # Train Schema: Inherits all 121 features and adds the mandatory target
 class ApplicationTrainSchema(BaseApplicationSchema):
-    target: Series[pa.Int64] = pa.Field(isin=[0, 1], nullable=False)
+    target: Optional[Series[pa.Int64]] = pa.Field(
+        isin=[0, 1],
+        nullable=False,
+    )
 
 
 # Test Schema
 class ApplicationTestSchema(BaseApplicationSchema):
-    target: Series[pa.Int64] = pa.Field(isin=[0, 1], nullable=False)
+    target: Optional[Series[pa.Int64]] = pa.Field(
+        isin=[0, 1],
+        nullable=False,
+    )
