@@ -9,19 +9,20 @@ from sklearn.impute import SimpleImputer
 from sklearn.pipeline import Pipeline
 from sklearn.preprocessing import OrdinalEncoder
 
-from configs.config import drop_cols, target_col
+from configs.main_config import drop_cols, target_col
 from src.entity.artifact_entity import (
     DataTransformationArtifact,
     DataValidationArtifact,
 )
 from src.entity.config_entity import DataTransformationConfig
+pd.set_option("future.no_silent_downcasting", True)
 
 
 class DataTransformation:
     def __init__(
         self,
+        config: DataTransformationConfig,
         data_validation_artifact: Optional[DataValidationArtifact] = None,
-        config: DataTransformationConfig = DataTransformationConfig(),
     ):
         self.data_validation_artifact = data_validation_artifact
         self.config = config

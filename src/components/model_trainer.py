@@ -1,10 +1,10 @@
 import json
 import logging
 import time
-import uuid
 import warnings
 from typing import Tuple
 
+import joblib
 import mlflow
 import mlflow.sklearn
 import numpy as np
@@ -13,14 +13,13 @@ from loguru import logger
 from sklearn.metrics import log_loss, roc_auc_score
 from sklearn.model_selection import StratifiedKFold
 
-from configs.config import drop_cols, seed, target_col
+from configs.main_config import drop_cols, seed, target_col
 from src.entity.artifact_entity import (
     DataTransformationArtifact,
     ModelTrainerArtifact,
 )
 from src.entity.config_entity import ModelTrainerConfig
 from src.model_factory import MODEL_FACTORY
-
 
 logging.getLogger("mlflow").setLevel(logging.ERROR)
 
@@ -39,22 +38,19 @@ warnings.filterwarnings(
 class ModelTrainer:
     def __init__(
         self,
+        config: ModelTrainerConfig,
         data_transformation_artifact: DataTransformationArtifact,
-        config: ModelTrainerConfig = ModelTrainerConfig(),
-        model_name: str = "lightgbm",
         n_splits: int = 5,
     ):
-        self.data_transformation_artifact = data_transformation_artifact
         self.config = config
-        self.model_name = model_name
+        self.data_transformation_artifact = data_transformation_artifact
+        self.model_name = self.config.model_type
         self.n_splits = n_splits
-
         self.seed = seed
 
         self.target_col = (
             target_col.lower() if isinstance(target_col, str) else "target"
         )
-
         self.drop_cols = [
             col.lower()
             for col in (
@@ -72,8 +68,7 @@ class ModelTrainer:
 
         if self.target_col not in train_df.columns:
             raise ValueError(
-                f"Target column '{self.target_col}' "
-                "was not found in the processed training data."
+                f"Target column '{self.target_col}' was not found in the processed training data."
             )
 
         cols_to_drop = [
@@ -116,18 +111,14 @@ class ModelTrainer:
             exist_ok=True,
         )
 
-        unique_id = uuid.uuid4().hex[:10]
-
-        dynamic_metadata_path = (
-            self.config.model_trainer_dir / f"{unique_id}_metadata.json"
+        # Deterministic file paths
+        metadata_path = self.config.model_trainer_dir / "metadata.json"
+        oof_predictions_path = self.config.oof_predictions_path
+        uncalibrated_model_path = (
+            self.config.model_trainer_dir / "candidate_model.joblib"
         )
 
-        oof_predictions_path = (
-            self.config.model_trainer_dir
-            / f"{unique_id}_oof_predictions.parquet"
-        )
-
-        # Load development/training data
+        # Load training features and labels
         X, y = self._load_training_data()
 
         logger.info(
@@ -145,20 +136,16 @@ class ModelTrainer:
             len(X),
             dtype=np.float64,
         )
-
         fold_auc_scores: list[float] = []
         fold_loss_scores: list[float] = []
 
-        with mlflow.start_run(
-            run_name=f"{self.model_name}_{unique_id}"
-        ) as run:
+        with mlflow.start_run(run_name=self.model_name) as run:
             run_id = run.info.run_id
 
             mlflow.set_tags(
                 {
                     "model_family": self.model_name,
                     "training_mode": "stratified_cv",
-                    "model_id": unique_id,
                 }
             )
 
@@ -169,7 +156,7 @@ class ModelTrainer:
                 }
             )
 
-            logger.info("Starting cross-validation...")
+            logger.info("Executing cross-validation folds...")
 
             for fold, (train_indices, valid_indices) in enumerate(
                 skf.split(X, y),
@@ -189,15 +176,21 @@ class ModelTrainer:
                 # Store OOF predictions in original row positions
                 oof_probabilities[valid_indices] = fold_probabilities
 
-                # Collect fold-level metrics for standard deviation
-                fold_auc_scores.append(
-                    float(roc_auc_score(y_valid_fold, fold_probabilities))
-                )
-                fold_loss_scores.append(
-                    float(log_loss(y_valid_fold, fold_probabilities))
+                fold_auc = float(roc_auc_score(y_valid_fold, fold_probabilities))
+                fold_loss = float(log_loss(y_valid_fold, fold_probabilities))
+
+                fold_auc_scores.append(fold_auc)
+                fold_loss_scores.append(fold_loss)
+
+                logger.debug(
+                    "Fold {}/{} | ROC-AUC: {:.5f} | LogLoss: {:.5f}",
+                    fold,
+                    self.n_splits,
+                    fold_auc,
+                    fold_loss,
                 )
 
-            # Strictly requested metrics
+            # Aggregate cross-validation metrics
             cv_metrics = {
                 "oof_roc_auc": float(roc_auc_score(y, oof_probabilities)),
                 "oof_logloss": float(log_loss(y, oof_probabilities)),
@@ -215,26 +208,21 @@ class ModelTrainer:
 
             mlflow.log_metrics(cv_metrics)
 
-            # Save OOF predictions for model calibration
+            # 1. Save deterministic OOF predictions
             oof_df = pd.DataFrame(
                 {
                     "target": y.to_numpy(),
                     "oof_probability": oof_probabilities,
                 }
             )
-
             oof_df.to_parquet(
                 oof_predictions_path,
                 index=False,
             )
-
             mlflow.log_artifact(str(oof_predictions_path))
 
-            # Fit the final candidate on ALL training data
-            logger.info(
-                "Fitting final candidate model on all training data..."
-            )
-
+            # 2. Fit the final candidate on ALL training data
+            logger.info("Fitting final candidate model on all training data...")
             final_model = MODEL_FACTORY[self.model_name]()
             start_time = time.time()
             final_model.fit(X, y)
@@ -244,6 +232,14 @@ class ModelTrainer:
                 time.time() - start_time,
             )
 
+            # 3. Save uncalibrated model locally
+            joblib.dump(final_model, uncalibrated_model_path)
+            logger.info(
+                "Saved local uncalibrated model to: {}",
+                uncalibrated_model_path,
+            )
+
+            # 4. Log parameters & model to MLflow
             model_params = final_model.get_params()
             mlflow.log_params(model_params)
 
@@ -252,42 +248,42 @@ class ModelTrainer:
                 "feature_names.json",
             )
 
-            # Save candidate model to MLflow
             mlflow.sklearn.log_model(
                 sk_model=final_model,
                 name="model",
                 serialization_format="cloudpickle",
             )
 
+            # 5. Save deterministic metadata JSON
             model_metadata = {
                 "run_id": run_id,
-                "model_id": unique_id,
                 "model_family": self.model_name,
                 "n_splits": self.n_splits,
                 "random_state": self.seed,
                 "parameters": model_params,
                 "metrics": cv_metrics,
+                "uncalibrated_model_path": str(uncalibrated_model_path),
                 "oof_predictions_path": str(oof_predictions_path),
             }
 
-            with open(dynamic_metadata_path, "w") as file:
+            with open(metadata_path, "w") as file:
                 json.dump(
                     model_metadata,
                     file,
                     indent=4,
                 )
 
-            mlflow.log_artifact(str(dynamic_metadata_path))
+            mlflow.log_artifact(str(metadata_path))
+            mlflow.log_artifact(str(uncalibrated_model_path))
 
             logger.success(
-                "Candidate model successfully logged to MLflow "
-                "under run ID: {}",
+                "Candidate model training completed and logged under run ID: {}",
                 run_id,
             )
 
         return ModelTrainerArtifact(
-            trained_model_path=f"runs:/{run_id}/model",
-            metrics_file_path=dynamic_metadata_path,
+            trained_model_path=str(uncalibrated_model_path),
+            metrics_file_path=metadata_path,
             metric_value=cv_metrics["oof_roc_auc"],
             oof_predictions_path=oof_predictions_path,
         )

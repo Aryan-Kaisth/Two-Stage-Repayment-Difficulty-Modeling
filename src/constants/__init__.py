@@ -23,4 +23,6 @@ MODEL_TRAINER_DIR: Path = Path("artifacts/model_trainer")
 MODEL_EVALUATION_DIR: Path = Path("artifacts/model_evaluation")
 MODEL_REGISTRY_NAME: str = "HomeCreditDefaultModel"
 
-MODEL_CALIBRATION_DIR: str = Path("artifacts/model_calibration")
+MODEL_CALIBRATION_DIR: Path = Path("artifacts/model_calibration")
+
+SAMPLE_DATA_PATH: Path = Path("app/assets/sample_unseen.csv")

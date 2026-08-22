@@ -38,15 +38,23 @@ class DataValidation:
         train_path = self.data_ingestion_artifact.train_file_path
         test_path = self.data_ingestion_artifact.test_file_path
 
-        logger.debug("Loading train data from {}", train_path)
+        logger.debug("Loading training partition from path: {}", train_path)
         train_df = pd.read_csv(train_path)
 
-        logger.debug("Loading test data from {}", test_path)
+        logger.debug("Loading test partition from path: {}", test_path)
         test_df = pd.read_csv(test_path)
 
-        # Standardize column headers to lowercase
+        # Normalize column casing across all raw inputs
         train_df.columns = train_df.columns.str.lower()
         test_df.columns = test_df.columns.str.lower()
+
+        logger.debug(
+            "Partitions loaded and normalized | Train: {:,} rows × {} cols | Test: {:,} rows × {} cols",
+            train_df.shape[0],
+            train_df.shape[1],
+            test_df.shape[0],
+            test_df.shape[1],
+        )
 
         return train_df, test_df
 
@@ -63,47 +71,56 @@ class DataValidation:
             "timestamp": datetime.utcnow().isoformat(),
         }
 
-        # 1. Validate Train Split (if provided)
+        # Check training schema contract
         if train_df is not None:
             report["train_validation"] = {"status": True, "errors": []}
             try:
+                logger.debug("Running Pandera schema checks on train partition...")
                 ApplicationTrainSchema.validate(train_df, lazy=True)
-                logger.info("Train dataset passed schema validation.")
+                logger.success("Train schema validation passed")
             except pa.errors.SchemaErrors as err:
                 validation_status = False
                 report["train_validation"]["status"] = False
                 report["train_validation"]["errors"] = err.failure_cases.to_dict(orient="records")
-                logger.error("Train dataset failed schema validation with {} issues", len(err.failure_cases))
+                logger.error(
+                    "Train schema validation failed with {:,} schema violations",
+                    len(err.failure_cases),
+                )
 
-        # 2. Validate Test / Inference Split (if provided)
+        # Check test/inference schema contract
         if test_df is not None:
             report["test_validation"] = {"status": True, "errors": []}
             try:
+                logger.debug("Running Pandera schema checks on test partition...")
                 ApplicationTestSchema.validate(test_df, lazy=True)
-                logger.info("Test/Inference dataset passed schema validation.")
+                logger.success("Test schema validation passed")
             except pa.errors.SchemaErrors as err:
                 validation_status = False
                 report["test_validation"]["status"] = False
                 report["test_validation"]["errors"] = err.failure_cases.to_dict(orient="records")
-                logger.error("Test/Inference dataset failed schema validation with {} issues", len(err.failure_cases))
+                logger.error(
+                    "Test schema validation failed with {:,} schema violations",
+                    len(err.failure_cases),
+                )
 
         return validation_status, report
 
     def _detect_dataset_drift(
         self, train_df: pd.DataFrame, test_df: pd.DataFrame
     ) -> Dict[str, Any]:
-        logger.info("Running Evidently data & target drift analysis")
+        logger.info("Evaluating feature and target distribution drift via Evidently...")
 
-        # Base metrics: Dataset-level feature drift
+        # Feature distribution shifts across splits
         metrics_list = [DataDriftPreset(include_tests=True)]
 
-        # If target exists in both, add ValueDrift for the target
+        # Include label drift if ground-truth target exists in both sets
         if "target" in train_df.columns and "target" in test_df.columns:
+            logger.debug("Target column found in both datasets — tracking label distribution drift")
             metrics_list.append(ValueDrift(column="target"))
             reference_df = train_df
             current_df = test_df
         else:
-            # Fallback if target is missing in test
+            logger.debug("Target column missing in test set — evaluating covariate drift only")
             reference_df = train_df.drop(columns=["target"], errors="ignore")
             current_df = test_df.drop(columns=["target"], errors="ignore")
 
@@ -113,35 +130,30 @@ class DataValidation:
             current_data=current_df,
         )
 
-        # Parse raw Evidently JSON output into a Python dict
         drift_dict = json.loads(drift_results.json())
 
-        # Save with 4-space indentation
         with open(self.config.drift_file_path, "w") as f:
             json.dump(drift_dict, f, indent=4)
 
-        logger.info(
-            "Data & target drift report saved successfully to {}",
-            self.config.drift_file_path,
-        )
+        logger.success("Drift analysis written to -> {}", self.config.drift_file_path)
 
         return drift_dict
 
     def _save_validation_artifacts(
         self, validation_status: bool, report: Dict[str, Any]
     ) -> None:
-        # Save status file (Gatekeeper)
+        # Gatekeeper token used by orchestrators to halt pipeline if schema breaks
         with open(self.config.status_file_path, "w") as f:
             f.write(f"Validation status: {validation_status}\n")
 
-        # Save schema validation report (JSON)
+        # Detailed schema inspection payload
         with open(self.config.report_file_path, "w") as f:
             json.dump(report, f, indent=4)
 
-        logger.info(
-            "Schema report saved to {} | Status written to {}",
-            self.config.report_file_path,
+        logger.success(
+            "Validation status written: {} | Report JSON: {}",
             self.config.status_file_path,
+            self.config.report_file_path,
         )
 
     def initiate_data_validation(self) -> DataValidationArtifact:
@@ -152,21 +164,19 @@ class DataValidation:
 
         logger.info("Starting data validation pipeline")
 
+        logger.debug("Ensuring report directory exists: {}", self.config.report_dir)
         self.config.report_dir.mkdir(parents=True, exist_ok=True)
 
-        # Load & preprocess
         train_df, test_df = self._load_and_preprocess_data()
-
-        # Validate schemas
         validation_status, report = self._validate_schema(train_df, test_df)
 
-        # Detect and save data & target drift
         self._detect_dataset_drift(train_df, test_df)
-
-        # Save validation files
         self._save_validation_artifacts(validation_status, report)
 
-        logger.info("Validation pipeline finished with status: {}", validation_status)
+        if validation_status:
+            logger.success("Data validation stage passed successfully")
+        else:
+            logger.warning("Data validation stage flagged schema/drift issues")
 
         return DataValidationArtifact(
             validation_status=validation_status,
