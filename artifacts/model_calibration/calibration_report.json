@@ -1,0 +1,13 @@
+{
+    "is_model_calibrated": true,
+    "calibration_method": "isotonic",
+    "original_log_loss": 0.5307539937308875,
+    "calibrated_log_loss": 0.2416146752547992,
+    "original_brier_score": 0.1778188206894763,
+    "calibrated_brier_score": 0.06724593912226055,
+    "original_roc_auc": 0.7715255249896888,
+    "calibrated_roc_auc": 0.7743538407556693,
+    "log_loss_delta": 0.28914,
+    "calibrated_model_path": "artifacts\\model_calibration\\calibrated_model.joblib",
+    "run_id": "4cf019db133b4d0fbaa33811e4d93b66"
+}

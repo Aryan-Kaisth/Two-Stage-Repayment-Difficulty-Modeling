@@ -1,0 +1,14 @@
+{
+    "is_model_accepted": true,
+    "cv_roc_auc": 0.7685748832380188,
+    "challenger_test_roc_auc": 0.7715255249896888,
+    "challenger_test_logloss": 0.5307539937308875,
+    "challenger_test_precision": 0.18157661647475642,
+    "challenger_test_recall": 0.660757453666398,
+    "champion_test_roc_auc": 0.7704016210667995,
+    "absolute_threshold": 0.75,
+    "improvement_delta": 0.0,
+    "decision_reason": "Challenger accepted: Outperformed champion (0.77153 >= required 0.77040 [Champion: 0.77040 + Delta: 0.00000]).",
+    "evaluated_model_path": "artifacts\\model_trainer\\candidate_model.joblib",
+    "run_id": "4cf019db133b4d0fbaa33811e4d93b66"
+}

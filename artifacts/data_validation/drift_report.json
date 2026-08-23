@@ -1,0 +1,1359 @@
+{
+    "metrics": [
+        {
+            "id": "15e89f895b482f9b84ba7274ed18a106",
+            "metric_name": "DriftedColumnsCount(drift_share=0.5)",
+            "config": {
+                "type": "evidently:metric_v2:DriftedColumnsCount",
+                "drift_share": 0.5
+            },
+            "value": {
+                "count": 0.0,
+                "share": 0.0
+            }
+        },
+        {
+            "id": "48a291f769df6b6d7988f9cf8ba1dd7e",
+            "metric_name": "ValueDrift(column=sk_id_curr,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "sk_id_curr",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006340770024423614
+        },
+        {
+            "id": "cb579364fce6a7b4cfe03199869db3f8",
+            "metric_name": "ValueDrift(column=amt_income_total,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_income_total",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00636208499354486
+        },
+        {
+            "id": "127aaa4de21823a651880ecce9017336",
+            "metric_name": "ValueDrift(column=amt_credit,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_credit",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.007389523120811065
+        },
+        {
+            "id": "2e7478e873bece3eb1fb768058e7c0ad",
+            "metric_name": "ValueDrift(column=amt_annuity,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_annuity",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00915937111158476
+        },
+        {
+            "id": "2897b3a36e86754f0eb4eec4bc0e1936",
+            "metric_name": "ValueDrift(column=amt_goods_price,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_goods_price",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009047853184553846
+        },
+        {
+            "id": "b36ee7f93d1bc6dd03dbcecf4dbce721",
+            "metric_name": "ValueDrift(column=region_population_relative,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "region_population_relative",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01446988629953491
+        },
+        {
+            "id": "ba5e616ce9190d48ae38c2951d796897",
+            "metric_name": "ValueDrift(column=days_birth,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "days_birth",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.005565761523730586
+        },
+        {
+            "id": "1f901fc201eb403ee08b8480c4cb5dc4",
+            "metric_name": "ValueDrift(column=days_employed,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "days_employed",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00372055892669146
+        },
+        {
+            "id": "5742120de3d245ece670346f96a6cdcb",
+            "metric_name": "ValueDrift(column=days_registration,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "days_registration",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01125761498265129
+        },
+        {
+            "id": "2774f5d6c8d6c2b3502d226ebd32dc51",
+            "metric_name": "ValueDrift(column=days_id_publish,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "days_id_publish",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00910912446514012
+        },
+        {
+            "id": "1321847bdd6a702189041faa0bfc42bf",
+            "metric_name": "ValueDrift(column=own_car_age,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "own_car_age",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.013459467168949926
+        },
+        {
+            "id": "484e0e8c7e2cadb6c80f743b6c6ec274",
+            "metric_name": "ValueDrift(column=cnt_fam_members,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "cnt_fam_members",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010623278708098524
+        },
+        {
+            "id": "a34583ef1d1296d82f8cc0c9eb4e7c33",
+            "metric_name": "ValueDrift(column=hour_appr_process_start,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "hour_appr_process_start",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.011522984049228573
+        },
+        {
+            "id": "b48f09dc9c3314d71e9a46d43b5be04b",
+            "metric_name": "ValueDrift(column=ext_source_1,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "ext_source_1",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.020726416863558163
+        },
+        {
+            "id": "fa35818e89f19449c6105a710de655bb",
+            "metric_name": "ValueDrift(column=ext_source_2,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "ext_source_2",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012510612687505585
+        },
+        {
+            "id": "42936dca16d17a1e73dd26664b34aae3",
+            "metric_name": "ValueDrift(column=ext_source_3,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "ext_source_3",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010922056618501742
+        },
+        {
+            "id": "db91d50c28deba367053178b2d1c2c42",
+            "metric_name": "ValueDrift(column=apartments_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "apartments_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009553195320296507
+        },
+        {
+            "id": "4ee1d175cc51bca1c30a19d78f20c63c",
+            "metric_name": "ValueDrift(column=basementarea_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "basementarea_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012478187921081029
+        },
+        {
+            "id": "2bb3e222e3e62a665387ba6016f7a9e7",
+            "metric_name": "ValueDrift(column=years_beginexpluatation_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_beginexpluatation_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00977191058585371
+        },
+        {
+            "id": "b12ef5daf13ccf064f5ddcbcde5f3e4a",
+            "metric_name": "ValueDrift(column=years_build_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_build_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.020541170034400456
+        },
+        {
+            "id": "3849ed37cb8f2fb9599b4b5039c9db2d",
+            "metric_name": "ValueDrift(column=commonarea_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "commonarea_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.015017671556264597
+        },
+        {
+            "id": "33a2ac3619788ee95d00d5d938e93814",
+            "metric_name": "ValueDrift(column=elevators_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "elevators_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006876269201185848
+        },
+        {
+            "id": "7197b936aaa649a8e6cc5be17955f193",
+            "metric_name": "ValueDrift(column=entrances_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "entrances_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010178185699784173
+        },
+        {
+            "id": "0d14efe7a6f47233eeec0b1994328960",
+            "metric_name": "ValueDrift(column=floorsmax_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmax_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010089654912883026
+        },
+        {
+            "id": "52bedd2ac13ec1fc58756be9e6814b84",
+            "metric_name": "ValueDrift(column=floorsmin_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmin_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006822783318432291
+        },
+        {
+            "id": "99b7da245f1bd82a484356745e276da1",
+            "metric_name": "ValueDrift(column=landarea_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "landarea_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012017274911257201
+        },
+        {
+            "id": "73aee9e068277239dd6e66d32e9d4105",
+            "metric_name": "ValueDrift(column=livingapartments_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingapartments_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.0157638189453452
+        },
+        {
+            "id": "60544c6731ab619b23c5480accd9c499",
+            "metric_name": "ValueDrift(column=livingarea_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingarea_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.011598717502800312
+        },
+        {
+            "id": "f0477243070fbc08bc1c0109d513577b",
+            "metric_name": "ValueDrift(column=nonlivingapartments_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingapartments_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01070248359488325
+        },
+        {
+            "id": "b5450a4fcd176eb5b95cb77af78c2f4b",
+            "metric_name": "ValueDrift(column=nonlivingarea_avg,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingarea_avg",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012173015363433709
+        },
+        {
+            "id": "0a8249f9c1f5b2a004b28ed54a18bd4e",
+            "metric_name": "ValueDrift(column=apartments_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "apartments_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009242787772488414
+        },
+        {
+            "id": "970160792daf019c7c54049349817094",
+            "metric_name": "ValueDrift(column=basementarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "basementarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012557213983099176
+        },
+        {
+            "id": "28ca98aca92176a95be47f2776c381e2",
+            "metric_name": "ValueDrift(column=years_beginexpluatation_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_beginexpluatation_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.007534404463019654
+        },
+        {
+            "id": "5eb66cf15bedd34dd7dfab8912bb005d",
+            "metric_name": "ValueDrift(column=years_build_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_build_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.020739717003251956
+        },
+        {
+            "id": "fc7489bc58117703a20680d4d0e9d08b",
+            "metric_name": "ValueDrift(column=commonarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "commonarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.019290314375568964
+        },
+        {
+            "id": "6ccf229a3b3a11bdae28a9e72cee4dcb",
+            "metric_name": "ValueDrift(column=elevators_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "elevators_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009377643055928142
+        },
+        {
+            "id": "b46fd2ea07a1694ab7fc75ea58ba029d",
+            "metric_name": "ValueDrift(column=entrances_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "entrances_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.011173883108054714
+        },
+        {
+            "id": "eed4f91a8eed94223d69cfcae06f3011",
+            "metric_name": "ValueDrift(column=floorsmax_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmax_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.011497561141893674
+        },
+        {
+            "id": "ec8eba83dcd4954fa7d294f4213c75d4",
+            "metric_name": "ValueDrift(column=floorsmin_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmin_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.008689996020181103
+        },
+        {
+            "id": "bcec4eb18650de5dd07fd36032d46708",
+            "metric_name": "ValueDrift(column=landarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "landarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.013725004838976857
+        },
+        {
+            "id": "9b0383fe36015eafbb3fe89871ba63eb",
+            "metric_name": "ValueDrift(column=livingapartments_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingapartments_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.014005466236505826
+        },
+        {
+            "id": "ea90f0e64184348d18f5f0edd3c0ad16",
+            "metric_name": "ValueDrift(column=livingarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01047108388722047
+        },
+        {
+            "id": "278936dd6fc21fc385d9981bf6a9f3ad",
+            "metric_name": "ValueDrift(column=nonlivingapartments_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingapartments_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.014091279146448478
+        },
+        {
+            "id": "358c7dc6a0bd81286e2c890c1e361532",
+            "metric_name": "ValueDrift(column=nonlivingarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01586374474458771
+        },
+        {
+            "id": "c20c05f814e25c2add941b0780e20f0e",
+            "metric_name": "ValueDrift(column=apartments_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "apartments_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009234393686867457
+        },
+        {
+            "id": "f623db1ad2032c6bf40228e920f84c38",
+            "metric_name": "ValueDrift(column=basementarea_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "basementarea_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.013062719718011767
+        },
+        {
+            "id": "42ec5d487ccfba431c808ed0a8d5d780",
+            "metric_name": "ValueDrift(column=years_beginexpluatation_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_beginexpluatation_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009803292352098134
+        },
+        {
+            "id": "f5e75855b3d257a9a6ad6cb0ec67549a",
+            "metric_name": "ValueDrift(column=years_build_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "years_build_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.02071090360430163
+        },
+        {
+            "id": "4d244fc7a4d795a0a8c0a31e202b5e46",
+            "metric_name": "ValueDrift(column=commonarea_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "commonarea_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.01559824705699626
+        },
+        {
+            "id": "2c7dc72648ca5ccda93313a321dda36e",
+            "metric_name": "ValueDrift(column=elevators_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "elevators_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006029222051709316
+        },
+        {
+            "id": "4479988e69438039323a8e798478f271",
+            "metric_name": "ValueDrift(column=entrances_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "entrances_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010385850499427337
+        },
+        {
+            "id": "636cdf6d2087a9d1125dcdb9f67e013a",
+            "metric_name": "ValueDrift(column=floorsmax_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmax_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010344970585592092
+        },
+        {
+            "id": "1f04686b7d5fa4e975e184d2565b76bc",
+            "metric_name": "ValueDrift(column=floorsmin_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "floorsmin_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.007687074882025816
+        },
+        {
+            "id": "53a030190e27492a1b4f53321b7a1439",
+            "metric_name": "ValueDrift(column=landarea_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "landarea_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.012760288823731666
+        },
+        {
+            "id": "61859fec3281e104fe183b2cbfac07f2",
+            "metric_name": "ValueDrift(column=livingapartments_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingapartments_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.017036635804480883
+        },
+        {
+            "id": "95b6b27433b53bc31e60757ca905f3c4",
+            "metric_name": "ValueDrift(column=livingarea_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "livingarea_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010816342105790586
+        },
+        {
+            "id": "bdb286888f61cfd27268c7213e2b41dd",
+            "metric_name": "ValueDrift(column=nonlivingapartments_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingapartments_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.011507144335900684
+        },
+        {
+            "id": "68136bd50c8106c051be14817867237b",
+            "metric_name": "ValueDrift(column=nonlivingarea_medi,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "nonlivingarea_medi",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.013271159647775267
+        },
+        {
+            "id": "f6c9d0950924750e3172e07bdb926bb8",
+            "metric_name": "ValueDrift(column=totalarea_mode,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "totalarea_mode",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.015844419145765374
+        },
+        {
+            "id": "07e32ed4f07fb1e4e58cc7162592df90",
+            "metric_name": "ValueDrift(column=obs_30_cnt_social_circle,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "obs_30_cnt_social_circle",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.009899112117148603
+        },
+        {
+            "id": "94c1d51e175f63df09b57cb6a586bba2",
+            "metric_name": "ValueDrift(column=def_30_cnt_social_circle,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "def_30_cnt_social_circle",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006206691383672929
+        },
+        {
+            "id": "d8cd852cb862e80888c3ef597a14b811",
+            "metric_name": "ValueDrift(column=obs_60_cnt_social_circle,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "obs_60_cnt_social_circle",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.010366310205858313
+        },
+        {
+            "id": "f76b7fb42846bc0a4b37c5955f9abb99",
+            "metric_name": "ValueDrift(column=def_60_cnt_social_circle,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "def_60_cnt_social_circle",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.00838092575734032
+        },
+        {
+            "id": "5d5347f37845279426b4a96b22e4fc14",
+            "metric_name": "ValueDrift(column=days_last_phone_change,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "days_last_phone_change",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.005671760281686764
+        },
+        {
+            "id": "21b5b12278c31d092b30f5e6e52eb42f",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_hour,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_hour",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.002698218578805725
+        },
+        {
+            "id": "2e619f988205b4ab9df631f97201cdd1",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_day,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_day",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.007482758122141281
+        },
+        {
+            "id": "89dd9ab2d75bd1fdb0dc7c3405172060",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_week,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_week",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.0033422221386158425
+        },
+        {
+            "id": "bb803a714760d23d83059aaa5de5b3ab",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_mon,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_mon",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.006814448416776208
+        },
+        {
+            "id": "ae10404513f3697dfd156951bdec86fc",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_qrt,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_qrt",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.0045951321689273825
+        },
+        {
+            "id": "5743cb86cadf1b06c4846f24c4dbc852",
+            "metric_name": "ValueDrift(column=amt_req_credit_bureau_year,method=Wasserstein distance (normed),threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "amt_req_credit_bureau_year",
+                "method": "Wasserstein distance (normed)",
+                "threshold": 0.1
+            },
+            "value": 0.005597665874505411
+        },
+        {
+            "id": "bbbf5df5aaa6109d4a0e32894e6d6f68",
+            "metric_name": "ValueDrift(column=name_contract_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_contract_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0013219130589140332
+        },
+        {
+            "id": "3999e34051f01984cca643c4bd0eec39",
+            "metric_name": "ValueDrift(column=code_gender,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "code_gender",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.005661944570462126
+        },
+        {
+            "id": "8486385487e7afd9e437d9d694bdd428",
+            "metric_name": "ValueDrift(column=flag_own_car,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_own_car",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.00048562099544972696
+        },
+        {
+            "id": "3700ae7d6b8638d0160bcab8ecb823c1",
+            "metric_name": "ValueDrift(column=flag_own_realty,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_own_realty",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0026336974465479782
+        },
+        {
+            "id": "667ecf2d5ccab693591a5607a2b19cca",
+            "metric_name": "ValueDrift(column=cnt_children,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "cnt_children",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.012215348836549815
+        },
+        {
+            "id": "8b1c4ede68e21f295b2ae0e910f40712",
+            "metric_name": "ValueDrift(column=name_type_suite,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_type_suite",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.009024294108656235
+        },
+        {
+            "id": "6297c3f8963dac2493c5357d60c3b08f",
+            "metric_name": "ValueDrift(column=name_income_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_income_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0057273828791845425
+        },
+        {
+            "id": "5550d83a0d1f6840c92edd1135129a2c",
+            "metric_name": "ValueDrift(column=name_education_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_education_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.003721655112425997
+        },
+        {
+            "id": "ccae6402606165d6e70186fc979f2b05",
+            "metric_name": "ValueDrift(column=name_family_status,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_family_status",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0048433488856455915
+        },
+        {
+            "id": "63c5eb851ae6e0c5987183bdd6873ddc",
+            "metric_name": "ValueDrift(column=name_housing_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "name_housing_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.004148994226579583
+        },
+        {
+            "id": "76af6eaf2a85bb43614629a0ac055a16",
+            "metric_name": "ValueDrift(column=flag_mobil,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_mobil",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0010891964190826162
+        },
+        {
+            "id": "a18c253666f654f69f26e697316bf746",
+            "metric_name": "ValueDrift(column=flag_emp_phone,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_emp_phone",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0012340997173409785
+        },
+        {
+            "id": "1068a912828664119b0c8778163cb8a0",
+            "metric_name": "ValueDrift(column=flag_work_phone,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_work_phone",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.004254393249945645
+        },
+        {
+            "id": "cd8f5d4fcff7294f66d309f671a9a698",
+            "metric_name": "ValueDrift(column=flag_cont_mobile,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_cont_mobile",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0021424904377437006
+        },
+        {
+            "id": "e35926c4acc2b256160be0acc5c9ac80",
+            "metric_name": "ValueDrift(column=flag_phone,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_phone",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.005223538823166961
+        },
+        {
+            "id": "fbe38b5ab06501cd07fcd323f8d2271d",
+            "metric_name": "ValueDrift(column=flag_email,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_email",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0020111776160407382
+        },
+        {
+            "id": "7ef79127809a2bb8d88734db3a05aa46",
+            "metric_name": "ValueDrift(column=occupation_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "occupation_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.013458291049061693
+        },
+        {
+            "id": "d2af76c69cbd527d6031ec5af4294a5b",
+            "metric_name": "ValueDrift(column=region_rating_client,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "region_rating_client",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0030108982500278427
+        },
+        {
+            "id": "f2cd9c54c6eb87feb790a4918e3d8633",
+            "metric_name": "ValueDrift(column=region_rating_client_w_city,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "region_rating_client_w_city",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0023926560983043243
+        },
+        {
+            "id": "c403699aec9561855202a8da87ac2eae",
+            "metric_name": "ValueDrift(column=weekday_appr_process_start,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "weekday_appr_process_start",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0077803984656860834
+        },
+        {
+            "id": "256c32afad4583b534c854644015c2c8",
+            "metric_name": "ValueDrift(column=reg_region_not_live_region,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "reg_region_not_live_region",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.00016995725241935821
+        },
+        {
+            "id": "20b4b76dcd77e88c720223717e9dd3fe",
+            "metric_name": "ValueDrift(column=reg_region_not_work_region,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "reg_region_not_work_region",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.002287433255739262
+        },
+        {
+            "id": "32785f193a21c69b6a0e450afc557f91",
+            "metric_name": "ValueDrift(column=live_region_not_work_region,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "live_region_not_work_region",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.005123033436758564
+        },
+        {
+            "id": "053cbbab27f8476043ff642799e12e7b",
+            "metric_name": "ValueDrift(column=reg_city_not_live_city,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "reg_city_not_live_city",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0006306112890979502
+        },
+        {
+            "id": "9893453c701d70dbddf2c25489daead1",
+            "metric_name": "ValueDrift(column=reg_city_not_work_city,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "reg_city_not_work_city",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0033689124687250323
+        },
+        {
+            "id": "8ce045e505e93a647d9d274db2461281",
+            "metric_name": "ValueDrift(column=live_city_not_work_city,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "live_city_not_work_city",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.006146665162655512
+        },
+        {
+            "id": "5b95e82549ddfb36c3bc66572a2a87b3",
+            "metric_name": "ValueDrift(column=organization_type,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "organization_type",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.022140434073672086
+        },
+        {
+            "id": "9f005b8d83819473ed14c016df979028",
+            "metric_name": "ValueDrift(column=fondkapremont_mode,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "fondkapremont_mode",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.010008699610880693
+        },
+        {
+            "id": "a6d6f442824e38d5e9cab59253218ec0",
+            "metric_name": "ValueDrift(column=housetype_mode,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "housetype_mode",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.007536392582597244
+        },
+        {
+            "id": "9a5db53b41ba34dd1155cb19e82841e6",
+            "metric_name": "ValueDrift(column=wallsmaterial_mode,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "wallsmaterial_mode",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.00861288533908264
+        },
+        {
+            "id": "e63b6dd711b764dc9419c463fcc84143",
+            "metric_name": "ValueDrift(column=emergencystate_mode,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "emergencystate_mode",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0012359546181883968
+        },
+        {
+            "id": "78f9a15b3bd19285f2d0f3bc0037cdce",
+            "metric_name": "ValueDrift(column=flag_document_2,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_2",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.003927182629611916
+        },
+        {
+            "id": "8fccefe7177606f0120ea8e3fd9ac2ce",
+            "metric_name": "ValueDrift(column=flag_document_3,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_3",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0010504516734415976
+        },
+        {
+            "id": "41038cd228d7dae404ad6739a840650d",
+            "metric_name": "ValueDrift(column=flag_document_4,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_4",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0007062773801562221
+        },
+        {
+            "id": "2149aed7a8982a9eee9f278b1734bec6",
+            "metric_name": "ValueDrift(column=flag_document_5,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_5",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.002696362434139349
+        },
+        {
+            "id": "73baee298aac52ab345db31a346460b3",
+            "metric_name": "ValueDrift(column=flag_document_6,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_6",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0005933892716740466
+        },
+        {
+            "id": "b98f899aa6ad8b4a38ec9fb610cff016",
+            "metric_name": "ValueDrift(column=flag_document_7,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_7",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.001700996104634107
+        },
+        {
+            "id": "5c085df291be4a7e083eb1055951f957",
+            "metric_name": "ValueDrift(column=flag_document_8,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_8",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0005526995286008466
+        },
+        {
+            "id": "ceae4d2ce8738c529fd3c074a4ff11e6",
+            "metric_name": "ValueDrift(column=flag_document_9,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_9",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0034164211671411098
+        },
+        {
+            "id": "d2328bddff21a192a7affc379c6a3eaa",
+            "metric_name": "ValueDrift(column=flag_document_10,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_10",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0028817535273547466
+        },
+        {
+            "id": "bb07dc77d9647e12e3d860c66d8fd9eb",
+            "metric_name": "ValueDrift(column=flag_document_11,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_11",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0010922895731702476
+        },
+        {
+            "id": "2678dcedaadd3510560e55558d4b73ec",
+            "metric_name": "ValueDrift(column=flag_document_12,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_12",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0015403572987764303
+        },
+        {
+            "id": "6fa729b46a847ed93144141cb425468e",
+            "metric_name": "ValueDrift(column=flag_document_13,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_13",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.008183294595961474
+        },
+        {
+            "id": "44a9780fe9ca740665168dc590ace64f",
+            "metric_name": "ValueDrift(column=flag_document_14,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_14",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.005317038828204984
+        },
+        {
+            "id": "6ab72185ca0e3cd910c430bf63caaec5",
+            "metric_name": "ValueDrift(column=flag_document_15,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_15",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0011381101934531631
+        },
+        {
+            "id": "0ed8d4d590a7e734dbfdb80ce141fb20",
+            "metric_name": "ValueDrift(column=flag_document_16,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_16",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.002392942304692881
+        },
+        {
+            "id": "b9b7fa4f8b271f488597106a55dd8c8b",
+            "metric_name": "ValueDrift(column=flag_document_17,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_17",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0012708111308292567
+        },
+        {
+            "id": "a5bf6ff121d7fa9a9b489f67124dc007",
+            "metric_name": "ValueDrift(column=flag_document_18,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_18",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.0005360877880672114
+        },
+        {
+            "id": "3047c7b5c85d07629ceb611871c5a0ac",
+            "metric_name": "ValueDrift(column=flag_document_19,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_19",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.001755210414504874
+        },
+        {
+            "id": "ed22eff5e2b50f6ab1e7a69877d72025",
+            "metric_name": "ValueDrift(column=flag_document_20,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_20",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.00021344706860905425
+        },
+        {
+            "id": "ff343187ff22fd28c16b1ed44e806efa",
+            "metric_name": "ValueDrift(column=flag_document_21,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "flag_document_21",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 0.00019999911279994418
+        },
+        {
+            "id": "67339c5bf650af8ad00b08cbc7d1cb0a",
+            "metric_name": "ValueDrift(column=target,method=Jensen-Shannon distance,threshold=0.1)",
+            "config": {
+                "type": "evidently:metric_v2:ValueDrift",
+                "column": "target",
+                "method": "Jensen-Shannon distance",
+                "threshold": 0.1
+            },
+            "value": 2.544122461177699e-05
+        }
+    ],
+    "tests": []
+}

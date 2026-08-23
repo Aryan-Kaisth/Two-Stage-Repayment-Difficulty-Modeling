@@ -1,0 +1,38 @@
+{
+    "run_id": "4cf019db133b4d0fbaa33811e4d93b66",
+    "model_family": "lightgbm",
+    "n_splits": 5,
+    "random_state": 42,
+    "parameters": {
+        "boosting_type": "goss",
+        "class_weight": null,
+        "colsample_bytree": 0.7,
+        "importance_type": "gain",
+        "learning_rate": 0.01,
+        "max_depth": -1,
+        "min_child_samples": 20,
+        "min_child_weight": 0.001,
+        "min_split_gain": 0.0,
+        "n_estimators": 2500,
+        "n_jobs": -1,
+        "num_leaves": 31,
+        "objective": null,
+        "random_state": 42,
+        "reg_alpha": 0.0,
+        "reg_lambda": 0.0,
+        "subsample": 1.0,
+        "subsample_for_bin": 200000,
+        "subsample_freq": 0,
+        "metric": "auc",
+        "verbose": -1,
+        "is_unbalance": true
+    },
+    "metrics": {
+        "oof_roc_auc": 0.7685748832380188,
+        "oof_logloss": 0.5202583512698006,
+        "std_roc_auc": 0.0021884156666446865,
+        "std_logloss": 0.0020561242799338126
+    },
+    "uncalibrated_model_path": "artifacts\\model_trainer\\candidate_model.joblib",
+    "oof_predictions_path": "artifacts\\model_trainer\\oof_predictions.parquet"
+}
