@@ -3,7 +3,7 @@
 Home Credit is a consumer finance company focused on expanding access to credit for people who may have limited or no traditional credit history. To assess creditworthiness and support responsible lending, it uses a broader range of financial and behavioral information beyond conventional credit data. The Home Credit dataset reflects this approach by combining current loan applications with previous credit history, account-level records, and detailed repayment behavior.
 
 <p align="left">
-  <img src="../docs/Home-Credit-Logo.png" alt="Home Credit Logo" width="60%">
+  <img src="../app/assets/Home-Credit-Logo.png" alt="Home Credit Logo" width="60%">
 </p>
 
 ## About the Dataset
