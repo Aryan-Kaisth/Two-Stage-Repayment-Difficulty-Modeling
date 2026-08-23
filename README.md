@@ -29,6 +29,24 @@ The **Home Credit Default Risk** dataset from Kaggle provides alternative financ
 
 Our goal is to build a model that looks across these alternative behavioral records to identify which applicants are likely to encounter repayment difficulty. Because roughly 92% of applicants repay successfully and only ~8% struggle, the system must be precise enough to flag true repayment friction without unfairly turning away capable borrowers.
 
+## Interactive Application System
+
+I built this end-to-end Streamlit application to bridge the gap between machine learning modeling and practical, transparent credit underwriting. Instead of outputting uncalibrated tree scores, the platform applies post-hoc probability calibration (Sigmoid / Isotonic scaling) so every prediction reflects a genuine, mathematically grounded probability of repayment difficulty.
+
+To make individual lending decisions transparent and auditable, the system allows underwriters to look up any applicant by their `SK_ID_CURR` and inspect exact risk drivers through local SHAP waterfall and decision trajectories, while also providing a global SHAP beeswarm to analyze portfolio-wide risk factors. For ongoing model reliability, the dashboard features embedded real-time monitoring via Evidently AI to track covariate feature shift and prediction drift (PSI) against training baselines.
+
+<p align="center">
+  <video src="app/assets/project_display.mp4" width="100%" controls autoplay loop muted></video>
+</p>
+
+### Launching the Dashboard
+
+Run the Streamlit application locally with `uv`:
+
+```bash
+uv run streamlit run app/streamlit_app.py
+```
+
 ## Architectural Flow
 
 ### Repository Structure
