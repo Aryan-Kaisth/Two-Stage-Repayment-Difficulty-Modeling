@@ -25,6 +25,7 @@ from configs.main_config import (
     transformation_config,
     trainer_config,
     target_col,
+    calibration_config
 )
 from src.pipelines.prediction_pipeline import PredictionPipeline
 
@@ -722,6 +723,22 @@ def render_metric_card(label, value, accent, glow):
         unsafe_allow_html=True,
     )
 
+def render_environment_badge() -> None:
+    """Renders active model architecture and calibration status in the sidebar."""
+    model_name = trainer_config.model_type.capitalize()
+    calibration_method = calibration_config.calibration_method.capitalize()
+
+    st.sidebar.markdown(
+        f"""
+        **Model Environment**  
+        :green[● System Active]  
+        * **Estimator:** :blue[{model_name}]  
+        * **Calibration:** :blue[{calibration_method}]  
+        * **Serving State:** `Ready`  
+        """
+    )
+    st.sidebar.divider()
+
 
 # --- Sidebar ---
 with st.sidebar:
@@ -747,6 +764,14 @@ with st.sidebar:
             ">
                 Repayment Difficulty Prediction
             </div>
+            <div style="
+                font-size:0.72rem;
+                color:#94a3b8;
+                font-weight:500;
+                margin-top:6px;
+            ">
+                Developed by <span style="color:#e2e8f0; font-weight:700;">Aryan Kaisth</span>
+            </div>
         </div>
         """,
         unsafe_allow_html=True,
@@ -761,8 +786,8 @@ with st.sidebar:
             color:#94a3b8;
             line-height:1.7;
         ">
-            <b style="color:#e2e8f0;">Prediction</b><br>
-            Two-stage repayment difficulty prediction
+            <b style="color:#e2e8f0;">Interactive Application</b><br>
+                Loan repayment prediction and analysis
             <br><br>
             <b style="color:#e2e8f0;">Calibration</b><br>
             Post-hoc probability calibration
@@ -771,7 +796,7 @@ with st.sidebar:
             SHAP-based applicant explanations
             <br><br>
             <b style="color:#e2e8f0;">Monitoring</b><br>
-            Prediction and feature drift monitoring
+            Covariate and label drift monitoring
         </div>
         """,
         unsafe_allow_html=True,
@@ -779,14 +804,7 @@ with st.sidebar:
 
     st.divider()
 
-    st.caption("Model environment")
-    st.markdown(
-        ":green-badge[● Production Ready]",
-    )
-    st.caption(
-        "Reference baselines are loaded from the configured training and OOF artifacts."
-    )
-
+    render_environment_badge()
 
 # --- Polished Header Banner ---
 st.html(
@@ -801,8 +819,7 @@ st.html(
         </div>
 
         <div class="hero-subtitle">
-            Explainable two-stage machine learning system with post-hoc probability 
-            calibration for Home Credit repayment difficulty prediction.
+            A system to predict how capable each applicant is of repaying a loan.
         </div>
     </div>
     """
