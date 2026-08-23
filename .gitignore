@@ -10,7 +10,6 @@ wheels/
 .venv
 
 # datasets
-data
 mlruns
 
 # catboost

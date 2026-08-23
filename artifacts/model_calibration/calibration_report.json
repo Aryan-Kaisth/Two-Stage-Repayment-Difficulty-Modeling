@@ -9,5 +9,5 @@
     "calibrated_roc_auc": 0.7743538407556693,
     "log_loss_delta": 0.28914,
     "calibrated_model_path": "artifacts\\model_calibration\\calibrated_model.joblib",
-    "run_id": "4cf019db133b4d0fbaa33811e4d93b66"
+    "run_id": "2b1acecc98e145be9beebc121c6ca880"
 }
