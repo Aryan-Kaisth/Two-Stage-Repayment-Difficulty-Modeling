@@ -111,12 +111,10 @@ class ModelTrainer:
             exist_ok=True,
         )
 
-        # Deterministic file paths
-        metadata_path = self.config.model_trainer_dir / "metadata.json"
+        # Deterministic file paths sourced directly from Config
+        metadata_path = self.config.metadata_path
         oof_predictions_path = self.config.oof_predictions_path
-        uncalibrated_model_path = (
-            self.config.model_trainer_dir / "candidate_model.joblib"
-        )
+        uncalibrated_model_path = self.config.trained_model_path
 
         # Load training features and labels
         X, y = self._load_training_data()
@@ -208,7 +206,7 @@ class ModelTrainer:
 
             mlflow.log_metrics(cv_metrics)
 
-            # 1. Save deterministic OOF predictions
+            # Save deterministic OOF predictions
             oof_df = pd.DataFrame(
                 {
                     "target": y.to_numpy(),
@@ -221,7 +219,7 @@ class ModelTrainer:
             )
             mlflow.log_artifact(str(oof_predictions_path))
 
-            # 2. Fit the final candidate on ALL training data
+            # Fit the final candidate on ALL training data
             logger.info("Fitting final candidate model on all training data...")
             final_model = MODEL_FACTORY[self.model_name]()
             start_time = time.time()
@@ -232,14 +230,14 @@ class ModelTrainer:
                 time.time() - start_time,
             )
 
-            # 3. Save uncalibrated model locally
+            # Save uncalibrated model locally
             joblib.dump(final_model, uncalibrated_model_path)
             logger.info(
                 "Saved local uncalibrated model to: {}",
                 uncalibrated_model_path,
             )
 
-            # 4. Log parameters & model to MLflow
+            # Log parameters & model to MLflow
             model_params = final_model.get_params()
             mlflow.log_params(model_params)
 
@@ -254,7 +252,7 @@ class ModelTrainer:
                 serialization_format="cloudpickle",
             )
 
-            # 5. Save deterministic metadata JSON
+            # Save deterministic metadata JSON
             model_metadata = {
                 "run_id": run_id,
                 "model_family": self.model_name,

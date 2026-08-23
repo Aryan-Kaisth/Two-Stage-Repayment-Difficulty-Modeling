@@ -30,6 +30,8 @@ class DataTransformationConfig:
 class ModelTrainerConfig:
     model_trainer_dir: Path
     oof_predictions_path: Path
+    trained_model_path: Path
+    metadata_path: Path
     target_column: str
     model_type: str
 
