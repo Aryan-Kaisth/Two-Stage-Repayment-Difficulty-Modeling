@@ -65,8 +65,10 @@ transformation_config = DataTransformationConfig(
 trainer_config = ModelTrainerConfig(
     model_trainer_dir=MODEL_TRAINER_DIR,
     oof_predictions_path=MODEL_TRAINER_DIR / "oof_predictions.parquet",
+    trained_model_path=MODEL_TRAINER_DIR / "candidate_model.joblib",
+    metadata_path=MODEL_TRAINER_DIR / "metadata.json",
     target_column=target_col,
-    model_type="catboost",
+    model_type="lightgbm",
 )
 
 evaluation_config = ModelEvaluationConfig(

@@ -17,12 +17,12 @@ histgbm_params = {
 lightgbm_params = {
     "boosting_type": "goss", # gradient based one side sampling
     "metric": "auc",
-    "n_estimators": 1200,
-    "learning_rate": 0.03,
+    "n_estimators": 2500,
+    "learning_rate": 0.01,
     "num_leaves": 31,
     "max_depth": -1,
-    #"subsample": 0.8, # cannot be used with goss
-    "colsample_bytree": 0.8,
+    # "subsample": 0.8, # cannot be used with goss
+    "colsample_bytree": 0.7,
     "random_state": seed,
     "n_jobs": -1,
     "importance_type": "gain",
