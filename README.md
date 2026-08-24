@@ -35,11 +35,38 @@ I built this end-to-end Streamlit application to bridge the gap between machine 
 
 To make individual lending decisions transparent and auditable, the system allows underwriters to look up any applicant by their `SK_ID_CURR` and inspect exact risk drivers through local SHAP waterfall and decision trajectories, while also providing a global SHAP beeswarm to analyze portfolio-wide risk factors. For ongoing model reliability, the dashboard features embedded real-time monitoring via Evidently AI to track covariate feature shift and prediction drift (PSI) against training baselines.
 
-<p align="center">
-  <video src="app/assets/project_display.mp4" width="100%" controls autoplay loop muted></video>
+<p align="left">
+  <a href="app/assets/project_display.mp4">
+    <img src="https://img.shields.io/badge/▶%20Watch%20Demo-Interactive%20Walkthrough-FF4B4B?style=for-the-badge&logo=streamlit&logoColor=white" alt="Watch App Demo Video" />
+  </a>
 </p>
 
-### Launching the Dashboard
+### Application Previews
+
+<table>
+  <tr>
+    <td width="50%" align="center">
+      <b>Data Acquisition</b><br><br>
+      <img src="app/assets/app_img_01.png" alt="Batch Intake & Data Health Profile" width="100%">
+    </td>
+    <td width="50%" align="center">
+      <b>Probability Calibration & Prediction</b><br><br>
+      <img src="app/assets/app_img_02.png" alt="Calibration Curve & Scoring Snapshot" width="100%">
+    </td>
+  </tr>
+  <tr>
+    <td width="50%" align="center">
+      <b>Local & Global SHAP Explainability</b><br><br>
+      <img src="app/assets/app_img_03.png" alt="Waterfall & Beeswarm Feature Importance" width="100%">
+    </td>
+    <td width="50%" align="center">
+      <b>Evidently AI Production Monitoring</b><br><br>
+      <img src="app/assets/app_img_04.png" alt="Feature & Prediction Drift Reports" width="100%">
+    </td>
+  </tr>
+</table>
+
+### Launching the Application
 
 Run the Streamlit application locally with `uv`:
 
